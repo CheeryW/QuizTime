@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,7 +12,10 @@
         android:layout_height="200dp"
         android:text="What is the latest Chinese dynasty?"
         android:textSize="40sp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:background="@drawable/question_card"
+        android:elevation="10dp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/flashcard_answer"
@@ -21,6 +24,75 @@
         android:gravity="center"
         android:text="Qing Dynasty"
         android:textSize="40sp"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:background="@drawable/answer_card"
+        android:elevation="10dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/answer1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Tang Dynasty"
+        android:textSize="30sp"
+        android:background="@color/grey"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/flashcard_question"
+        android:visibility="invisible"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/answer2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Ming Dynasty"
+        android:textSize="30sp"
+        android:background="@color/grey"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/answer1"
+        android:visibility="invisible"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/answer3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Qing Dynasty"
+        android:textSize="30sp"
+        android:background="@color/grey"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/answer2"
+        android:visibility="invisible"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/visible"
+        android:src="@mipmap/visibility_round"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/answer3"
+        android:visibility="visible"
+        android:contentDescription="Eye"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/invisible"
+        android:src="@mipmap/invisibility_round"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/answer3"
+        android:visibility="invisible"
+        android:contentDescription="Eye with slash"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
