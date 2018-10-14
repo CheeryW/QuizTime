@@ -92,7 +92,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/answer3"
         android:visibility="invisible"
-        android:contentDescription="Eye with slash"
+        android:contentDescription="Eye with a slash"
         tools:ignore="HardcodedText" />
 
 </RelativeLayout>
