@@ -1,6 +1,7 @@
 package com.example.cheery.quiztime;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -91,6 +92,22 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.invisible).setVisibility(View.INVISIBLE);
             }
         });
+
+        // Go to AddCardActivity when add button is pushed
+        findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =  new Intent(MainActivity.this, AddCardActivity.class);
+                MainActivity.this.startActivityForResult(i, 100);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent i) {
+        if(requestCode == 100) {
+
+        }
     }
 
 }
