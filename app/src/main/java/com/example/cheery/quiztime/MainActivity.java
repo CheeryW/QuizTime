@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    protected static boolean editClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =  new Intent(MainActivity.this, AddCardActivity.class);
+                String oriQ = ((TextView) findViewById(R.id.flashcard_question)).getText().toString();
+                String oriA = ((TextView) findViewById(R.id.flashcard_answer)).getText().toString();
+                i.putExtra("Question", oriQ);
+                i.putExtra("Answer", oriA);
+                MainActivity.this.startActivityForResult(i, 100);
+            }
+        });
+
+        // Edit current flashcard
+        findViewById(R.id.edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AddCardActivity.class);
+                String oriQ = ((TextView) findViewById(R.id.flashcard_question)).getText().toString();
+                String oriA = ((TextView) findViewById(R.id.flashcard_answer)).getText().toString();
+                i.putExtra("Question", oriQ);
+                i.putExtra("Answer", oriA);
+                editClicked = true;
                 MainActivity.this.startActivityForResult(i, 100);
             }
         });
@@ -106,7 +127,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent i) {
         if(requestCode == 100) {
-
+            // Receive new question and answer on the flashcard
+            String newQ = i.getExtras().getString("Question");
+            String newA = i.getExtras().getString("Answer");
+            ((TextView) findViewById(R.id.flashcard_question)).setText(newQ);
+            ((TextView) findViewById(R.id.flashcard_answer)).setText(newA);
         }
     }
 
