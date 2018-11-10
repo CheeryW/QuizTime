@@ -1,4 +1,28 @@
-## QuizTime
+# QuizTime
+
+## Lab 2
+
+### App Description
+This is an improved version from Lab 1. Now it can let user to create his or her own flashcard! User can edit the current default flashcard by clicking on the editting icon or create a brand new one by clicking on the adding icon. If the user doesn't want to change the current card, he or she can click on the cancel icon to get back to the card page. A card without either question or answer cannot be saved.
+
+### App Walk-though
+<img src="http://g.recordit.co/2p2NTLcpGk.gif" width=200><br>
+
+## Required
+- [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
+- [x] The 'Add Card Screen' has a cancel button to take the user back to the main screen
+- [x] User can enter and submit a Question and Answer through the 'Add Card Screen'
+- [x] User will see the card they just created on the main screen when they press the 'Save Button'
+- [x] Push your progress to GitHub!
+
+## Optional
+- [x] User can edit a card
+- [x] An error message is shown if the user doesn't enter both a Question and an Answer
+- [ ] A notification is shown if the card was created successfully
+- [ ] User can also enter multiple choice answers when creating a card
+- [ ] App is further styled and customized!
+
+## Lab 1
 
 ### App Description
 It displays a question at first. If you click on the question, the question will disappear, and the answer will show up on
