@@ -7,14 +7,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     protected static boolean editClicked = false;
+    FlashcardDatabase flashcardDatabase;
+    List<Flashcard> allFlashcards; // hold all flashcard objects
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flashcardDatabase = new FlashcardDatabase(getApplicationContext());
+        allFlashcards = flashcardDatabase.getAllCards();
+
+        if (allFlashcards != null && allFlashcards.size() > 0) {
+            ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(0).getQuestion());
+            ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(0).getAnswer());
+        }
 
         // flip to show answer
         findViewById(R.id.flashcard_question).setOnClickListener(new View.OnClickListener() {
@@ -132,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
             String newA = i.getExtras().getString("Answer");
             ((TextView) findViewById(R.id.flashcard_question)).setText(newQ);
             ((TextView) findViewById(R.id.flashcard_answer)).setText(newA);
+            flashcardDatabase.insertCard(new Flashcard(newQ, newA));
+            allFlashcards = flashcardDatabase.getAllCards();
         }
     }
 

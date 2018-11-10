@@ -75,7 +75,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/visible"
-        android:src="@mipmap/visibility_round"
+        android:src="@drawable/ic_visibility_black_24dp"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/answer3"
@@ -84,15 +84,15 @@
         tools:ignore="HardcodedText" />
 
     <ImageView
+        android:id="@+id/invisible"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/invisible"
-        android:src="@mipmap/invisibility_round"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/answer3"
-        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:contentDescription="Eye with a slash"
+        android:src="@drawable/ic_visibility_off_black_24dp"
+        android:visibility="invisible"
         tools:ignore="HardcodedText" />
 
     <ImageView
@@ -110,5 +110,13 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/edit"
         android:src="@drawable/ic_edit_black_24dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/nextCard"
+        android:src="@drawable/ic_navigate_next_black_24dp" />
 
 </RelativeLayout>
