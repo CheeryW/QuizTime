@@ -3,11 +3,10 @@
 ## Lab 2
 
 ### App Description
-`TODO://`
+This is an improved version from Lab 1. Now it can let user to create his or her own flashcard! User can edit the current default flashcard by clicking on the editting icon or create a brand new one by clicking on the adding icon. If the user doesn't want to change the current card, he or she can click on the cancel icon to get back to the card page. A card without either question or answer cannot be saved.
 
 ### App Walk-though
-`TODO://`
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="http://g.recordit.co/2p2NTLcpGk.gif" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
