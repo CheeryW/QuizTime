@@ -1,5 +1,28 @@
 # QuizTime
 
+## Lab 3
+
+### App Description
+This is an improved version from Lab 2. Now users can save multiple flashcards and browse through them! To see the next card, click the > icon on the right; to see the previous card, click the < icon on the left. Click the trash bin icon to delete the current card. Note that every new card will be added at the end of the card sequence.
+
+### App Walk-though
+#### Browsing through new cards
+<img src="http://g.recordit.co/Wr49AiD0LU.gif" width=200><br>
+#### Cards are saved
+<img src="http://g.recordit.co/wpvqgT2yY5.gif" width=200><br>
+#### Cards can be deleted and added again
+<img src="http://g.recordit.co/8DeGSqeHly.gif" width=200><br>
+
+## Required
+- [x] User can create a card and still see their created card when the app is relaunched.
+- [x] User can create muliple cards and browse through all created cards
+
+## Optional
+- [x] User can delete a card and no longer see it in their deck anymore
+- [ ] Flashcards are shown in random order instead of the order they were created in
+- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
 ## Lab 2
 
 ### App Description
