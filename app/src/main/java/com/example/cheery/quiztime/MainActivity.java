@@ -1,10 +1,14 @@
 package com.example.cheery.quiztime;
 
+import android.animation.Animator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -41,14 +45,55 @@ public class MainActivity extends AppCompatActivity {
                         currentCardDisplayedIndex = 0; // when we reach the end of card list
                     }
 
-                    ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
-                    ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                    final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                    final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
 
-                    // always keep the question side of the next card up
-                    if (findViewById(R.id.flashcard_answer).getVisibility() == View.VISIBLE) {
-                        findViewById(R.id.flashcard_answer).setVisibility(View.INVISIBLE);
-                        findViewById(R.id.flashcard_question).setVisibility(View.VISIBLE);
+                    if(allFlashcards.size() >= 1) {
+                        // start the left out animation
+                        if (findViewById(R.id.flashcard_question).getVisibility() == View.VISIBLE) {
+                            findViewById(R.id.flashcard_question).startAnimation(leftOutAnim);
+                        } else {
+                            findViewById(R.id.flashcard_answer).startAnimation(leftOutAnim);
+                        }
                     }
+
+                    leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            // this method is called when the animation first starts
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            // Connect with the rightIn animation
+                            findViewById(R.id.flashcard_question).startAnimation(rightInAnim);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) { }
+                    });
+
+                    rightInAnim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            // always keep the question side of the next card up
+                            if (findViewById(R.id.flashcard_answer).getVisibility() == View.VISIBLE) {
+                                findViewById(R.id.flashcard_answer).setVisibility(View.INVISIBLE);
+                                findViewById(R.id.flashcard_question).setVisibility(View.VISIBLE);
+                            }
+
+                            // Get the next card's question and answer
+                            ((TextView) findViewById(R.id.flashcard_question)).setText(allFlashcards.get(currentCardDisplayedIndex).getQuestion());
+                            ((TextView) findViewById(R.id.flashcard_answer)).setText(allFlashcards.get(currentCardDisplayedIndex).getAnswer());
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) { }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) { }
+                    });
+
                 }
             }
         });
@@ -97,12 +142,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // flip to show answer
+        // flip to show answer (with animation)
         findViewById(R.id.flashcard_question).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                View answerSideView = findViewById(R.id.flashcard_answer);
+
+                // get the center for the clipping circle animation
+                int cx = answerSideView.getWidth() / 2;
+                int cy = answerSideView.getHeight() / 2;
+
+                // get the final radius for the clipping circle animation
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+                // create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView, cx, cy, 0f, finalRadius);
+
+                // hide the question and show the answer to prepare for playing the animation!
                 findViewById(R.id.flashcard_question).setVisibility(View.INVISIBLE);
-                findViewById(R.id.flashcard_answer).setVisibility(View.VISIBLE);
+                answerSideView.setVisibility(View.VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
             }
         });
 
@@ -187,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("Question", oriQ);
                 i.putExtra("Answer", oriA);
                 MainActivity.this.startActivityForResult(i, 100);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 
@@ -201,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("Answer", oriA);
                 editClicked = true;
                 MainActivity.this.startActivityForResult(i, 100);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
     }
